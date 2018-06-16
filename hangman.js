@@ -12,7 +12,8 @@ var descript = (description[random] )
 //*Push for the array words
 var emptyArray = [];
 var lettersGuessed =[];
-
+var guessesleft = 7;
+console.log(guessesleft)
 //* Get HTML elements
 var wordsLine = document.getElementsByClassName('wordsLine')
 var lettersBox = document.getElementById('lettersBox')
@@ -29,26 +30,51 @@ let randomA = () => {
  }
 
      //*keyPress for user input
-     document.addEventListener("keypress", (event) => {
+document.addEventListener("keypress", (event) => {
      var keypressed = String.fromCharCode(event.keyCode);
-
-if(emptyArray.indexOf(keypressed)) {
-           // *Changing the dashes into letters
-            emptyArray[ramA.indexOf(keypressed)] = keypressed;   
-            wordsLine[0].innerHTML = emptyArray.join(" ")
-   
-            //*go to the next level when array is solved
-    if (emptyArray.join("") == ramA) {
-        alert( 'Oh yeah!, OnWards');
-        window.location.reload()
-
+     
+              // *Changing the dashes into letters
+                emptyArray[ramA.indexOf(keypressed)] = keypressed;   
+                wordsLine[0].innerHTML = emptyArray.join(" ")
+    
+    if(emptyArray.indexOf(keypressed)>-1) {
+          
+                 
+                //*go to the next level when array is solved 
+            if(emptyArray.join("") == ramA && guessesleft<= 3  ){
+                alert("got out of that one")
+                // todo: add got out of rope sound
+                window.location.reload()
+              }
+                if (emptyArray.join("") == ramA) {
+                    alert( 'Oh yeah!, OnWards'); 
+                    window.location.reload()     
+        } 
     } 
-} 
-else{
-        lettersGuessed.push(keypressed);
-        lettersBox.innerHTML = lettersGuessed;
-        console.log(lettersGuessed)
-     }
+    else{ 
+            lettersGuessed.push(keypressed); 
+            // for (j=guessesleft; j>0; j--){
+                guessesleft --; 
+                    alert("guess again :)" + " " + "You have" + " " + guessesleft + " " + "guesses left")
+                //   todo: add rope tightening or putting on, tying sound
+                     document.body.style.backgroundColor = "green";
+                    //  todo: changing /dimming bacground color styling
+                 if(guessesleft === 0){ 
+                        alert("game over") 
+                         var audio = new Audio('Male-Grunt.mp3');
+                           audio.play();
+                         var audio = new Audio('rope.wav');
+                            audio.play();
+                         document.body.style.backgroundImage = "url('Blood.mp4')";
+                                setTimeout(function(){
+                                      window.location.reload() }, 10000);
+                 }
+            
+            
+            lettersBox.innerHTML = lettersGuessed;
+        //    guessesleft++;
+            // console.log(lettersGuessed)
+        }
 });
      
 
@@ -56,13 +82,13 @@ else{
  
 
 //hint Button
-for(i=0; i<hints.length; i++ ){
+// for(i=0; i<hints.length; i++ ){
     button.addEventListener("click", function(){
           HintCircle.innerHTML = hintz;
            
 })
       console.log(hintz)
-};
+// };
 
 // appending the categories on the screen
 category.innerHTML = descript;
