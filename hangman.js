@@ -1,6 +1,6 @@
-var hints = ["comes in a bunch on a vine","I'm apart of your fingers", "etymology of the word 'stupid'", "Beep beep, Richie","used with steel to produce an igniting spark", "I'm on a tree"]
-var description = ["fruit", "something of the body", "word", "movie", "rock", "disriptive to nature/in nature"]
-var Answers=["grapes", "fingernail", "nice","it" ,"flint", "bark"]
+var hints = ["comes in a bunch on a vine", "a place to work out", "etymology of the word 'stupid'", "Beep beep, Richie","used with steel to produce an igniting spark", "I'm on a tree"]
+var description = ["fruit", "place", "word", "movie", "rock", "disriptive to nature/in nature"]
+var Answers=["grapes", "gym", "nice","it" ,"flint", "bark"]
  var random = Math.floor(Math.random() * Answers.length)//Randomizing the words in the array
 
 // var hintsR = Math.floor(Math.random() * hints.length)
